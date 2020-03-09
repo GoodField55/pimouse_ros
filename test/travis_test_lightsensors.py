@@ -27,7 +27,7 @@ class LightsensorTest(unittest.TestCase):
 
   def test_node_exist(self):
     nodes = rosnode.get_node_names()
-    self.assertIn('/lightsensors',nodes,"node does not exist")
+    self.assertIn('lightsensors',nodes,"node does not exist")
 
   def test_get_value(self):
     rospy.set_param('lightsensors_freq',10)
@@ -37,9 +37,9 @@ class LightsensorTest(unittest.TestCase):
 
       time.sleep(3)
       self.assertFalse(self.count == 0,"cannot subscribe the topic")
-      self.check_values(4321,123,0,-1)
+      self.check_values(-1,0,123,4321)
 
-  def test_vhange_parameter(self):
+  def test_change_parameter(self):
     rospy.set_param('lightsensors_freq',1)
     time.sleep(2)
     c_prev = self.count
