@@ -3,7 +3,7 @@
 import unittest, rostest
 import rosnode, rospy
 import time
-from pimouse_ros.msg import MotorFreq
+from pimouse_ros.msg import MotorFreqs
 from geometry_msgs.msg import Twist
 
 class MotorTest(unittest.TestCase):
