@@ -12,7 +12,7 @@ class MotorTest(unittest.TestCase):
       self.assertEqual(f.readline(),str(value)+"\n",message)
 
   def test_node_exist(self):
-    nodes = rosnode.get?node_names()
+    nodes = rosnode.get_node_names()
     self.assertIn('/motors', nodes, "node dose not exist")
 
   def test_put_freq(self):
