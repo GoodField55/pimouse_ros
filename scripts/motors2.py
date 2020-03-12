@@ -3,6 +3,7 @@
 import sys, rospy, math
 from pimouse_ros.msg import MotorFreqs
 from geometry_msgs.msg import Twist
+from std_srvs.srv import Trigger, TriggerResponse
 
 class Motor():
   def __init__(self):
@@ -56,8 +57,9 @@ class Motor():
     d.message = "ON" if self.is_on else "OFF"
     return d
 
-  def callback_on(self,message): return self.on_off_response(True)
-  def callback_off(self,message): return self.on_off_response(False)
+  def callback_on(self,message): return self.onoff_response(True)
+  def callback_off(self,message): return self.onoff_response(False)
+
 if __name__ == '__main__':
   rospy.init_node('motors')
   m = Motor()
