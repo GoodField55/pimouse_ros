@@ -27,13 +27,13 @@ class Motor():
       self.is_on = onoff
       return True
     except:
-      rospy.logger("cannot write to " + en)
+      rospy.logerr("cannot write to " + en)
 
     return False
 
   def set_raw_freq(self,left_hz,right_hz):
     if not self.is_on:
-      rospy.logger("not enpowered")
+      rospy.logerr("not enpowered")
       return
 
     try:
@@ -41,7 +41,7 @@ class Motor():
         lf.write(str(int(round(left_hz))) + "\n")
         rf.write(str(int(round(right_hz))) + "\n")
     except:
-      rospy.logger("cannot write to rtmotor_raw_*")
+      rospy.logerr("cannot write to rtmotor_raw_*")
 
   def callback_raw_freq(self,message):
     self.set_raw_freq(message.left_hz,message.right_hz)
@@ -55,7 +55,7 @@ class Motor():
 
   def callback_tm(self,message):
     if not self.is_on:
-      rospy.logger("not enpowered")
+      rospy.logerr("not enpowered")
       return False
 
     dev = "/dev/rtmotor0"
@@ -65,7 +65,7 @@ class Motor():
           (message.left_hz,message.right_hz,message.duration_ms))
 
     except:
-      rospy.logger("cannot write to " + dev)
+      rospy.logerr("cannot write to " + dev)
       return False
 
     return True
